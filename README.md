@@ -1,12 +1,12 @@
 # zosma-llama2-worker
 
 Docker container for LLaMA 2 inference engine and a REST API wrapper.  
-The docker image does not contain the model. It can load the model form mounted volume.
+The docker image does not contain the model. The container can load the model from  a mounted volume.
 
 REST API wrapper is based on the following inference sample code form the llama-recipes:    
 https://github.com/facebookresearch/llama-recipes/blob/main/inference/inference.py
 
-## Setup Ubuntu-22.04 Host for Cuda RTX3090 drivers and docker container toolkit
+## Setup Ubuntu-22.04 host for Cuda RTX3090 drivers and docker container toolkit
 
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
 
@@ -19,7 +19,7 @@ Either you can download the model from Huggingface or convert using the instruct
 https://github.com/facebookresearch/llama-recipes#model-conversion-to-hugging-face
 
 ## Configuration
-model and max output tokens can be configured in the configuration file config.ini
+Model and max output tokens can be configured in the configuration file config.ini
 Example:  
 ```
 [model]
