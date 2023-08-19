@@ -1,0 +1,70 @@
+openapi: 3.0.3
+info:
+  title: Zosma LLaMA API - OpenAPI 3.0
+  description: |-
+    This is a Zosma LLaMA API Server based on the OpenAPI 3.0 specification.
+  version: 0.0.1
+servers:
+  - url: https://<baseurl>/api/v1
+paths:
+  /query:
+    post:
+      security:
+        - api_key: []
+      tags:
+        - query
+      summary: Sends list of prompt completion queries
+      description: Sends list of user queries with given input array
+      operationId: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Query'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'          
+        default:
+          description: successful operation
+          
+components:
+  schemas:
+    Prompt:
+      type: object
+      properties:
+        role:
+          type: string
+          example: user
+        content:
+          type: string
+          example: I want to know about Paris
+    Query:
+      type: array
+      items:
+        $ref: '#/components/schemas/Prompt' 
+      properties:
+        role:
+          type: string
+          example: user
+        content:
+          type: string
+          example: I want to know about Paris
+    QueryResponse:
+      type: string
+
+    ApiResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/QueryResponse'
+
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
