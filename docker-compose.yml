@@ -1,0 +1,27 @@
+version: '3.9'
+
+name: zosma-llama
+
+services:
+  llama2: 
+    restart: always
+    image: mcntech/zosma-llama2-worker:v0.01
+    ports:
+      - 9427:3000
+    volumes:
+      - /models_hf:/models_hf
+    deploy:
+      resources:
+        reservations:
+          devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [compute, utility]
+  worker:
+    restart: always
+    depends_on:
+      - llama2
+    image: mcntech/zosma-llama2-workershim:v0.01
+    env_file:
+      - .env
+
