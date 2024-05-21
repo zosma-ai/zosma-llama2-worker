@@ -1,11 +1,18 @@
 # zosma-llama2-worker
 
-Docker container for LLaMA 2 inference engine and a REST API wrapper.  
-The docker image does not contain the model. The container can load the model from  a mounted volume.
+**Repository Description: zosma-llama2-worker**
 
-REST API wrapper is based on the following inference sample code form the llama-recipes:    
-https://github.com/facebookresearch/llama-recipes/blob/main/inference/inference.py
+This repository houses the Docker container setup for deploying the LLaMA 2 inference engine complemented by a REST API wrapper, facilitating advanced natural language processing tasks. The Docker setup is specifically designed to not include the model itself but rather load it dynamically from a mounted volume, offering flexibility and ease of updates or model swaps.
 
+The REST API, foundational to this setup, is adapted from sample inference code provided in the LLaMA-recipes on GitHub, ensuring that it remains aligned with the latest recommended practices for LLaMA model utilization. The API allows users to interact with the LLaMA model seamlessly, submitting queries and receiving responses formatted according to user specifications.
+
+Key features of this repository include:
+- **Model Flexibility**: Users have the ability to configure the model name and the maximum number of output tokens via a `config.ini` file, allowing for customized setup based on specific requirements.
+- **Advanced Configuration**: This setup is intended for use on systems equipped with Nvidia RTX 3090 GPUs, supporting intensive computational tasks required by large models like LLaMA 2.
+- **Dynamic Model Loading**: The architecture supports dynamic loading of the LLaMA model from a mounted volume, making it easy to update or change the model without rebuilding the Docker image.
+- **API-Driven Interaction**: The REST API built around the OpenAPI 3.0 specification offers a robust interface for developers to integrate LLaMA-based NLP capabilities into their applications or services.
+
+This Docker container is ideal for developers looking to deploy a scalable, efficient NLP service with the power of LLaMA 2, providing a foundation for building complex, AI-driven applications.
 ## Setup Ubuntu-22.04 host for Cuda RTX3090 drivers and docker container toolkit
 
 https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
